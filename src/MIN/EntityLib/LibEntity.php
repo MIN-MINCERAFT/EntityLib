@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MIN\EntityLib;
 
-final class EntityLib {
+use pocketmine\entity\Living;
+
+class LibEntity extends Living {
     
 }
