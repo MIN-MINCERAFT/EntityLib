@@ -11,7 +11,7 @@ use pocketmine\world\World;
 
 final class EntityLibManager
 {
-    public static function onRegisterEntity(): void
+    public static function onRegisterLibEntity(): void
     {
         EntityFactory::getInstance()->register(LibHuman::class, static function (World $world, CompoundTag $nbt): LibHuman {
             return new LibHuman(EntityDataHelper::parseLocation($nbt, $world), LibHuman::parseSkinNBT($nbt), $nbt);
@@ -19,5 +19,10 @@ final class EntityLibManager
         EntityFactory::getInstance()->register(LibEntity::class, static function (World $world, CompoundTag $nbt): LibEntity {
             return new LibEntity(EntityDataHelper::parseLocation($nbt, $world), $nbt);
         }, ['LibEntity']);
+    }
+
+    public static function createEntityTypeCompoundTag(string $entity_type, ): CompoundTag
+    {
+        return CompoundTag::create()->setString('ENTITY_TYPE',$entity_type);
     }
 }
